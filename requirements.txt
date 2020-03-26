@@ -1,0 +1,6 @@
+flask>=0.10.1,<=0.12
+flask_pymongo>=0.5.2,<1.0
+werkzeug<1.0
+flake8
+flask-script>=2.0.5,<3.0
+pytest==3.10.0

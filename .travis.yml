@@ -1,0 +1,32 @@
+# Script file to setup the CI?CD enviroment for tests to run
+
+language: python
+
+python: 3.5
+sudo: required
+
+env:
+    matrix:
+        - TEST_TYPE="unit"
+
+services:
+    - mongodb
+
+addons:
+    apt:
+        sources:
+            - mongodb-3.0-precise
+        packages:
+            - mongodb-org-server
+
+cache:
+    - pip
+
+before_install:
+    - chmod a+x ./scripts/*
+
+install:
+    - ./scripts/install_$TEST_TYPE.sh
+
+script:
+    - ./scripts/script_$TEST_TYPE.sh
