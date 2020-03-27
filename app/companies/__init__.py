@@ -19,6 +19,7 @@ schema = {
 
 
 def create_companies_index():
+    """Create MongoDB index"""
     create_index('companies', 'index')
 
 

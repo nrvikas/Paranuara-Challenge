@@ -5,7 +5,13 @@
 This is a Flask based **HATEOAS driven RESTful** **API** to get and search data related to company and employees according to  Paranuara Challenge -   build a REST API to provide the desired information about people living in the Paranuara planet.
 Simply use a API tool like Postman.
 It uses MongoDB for data storage.  `pytest` framework is used to write test cases to enhance data import and  API behavior and stability.
-Travis CI is used to facilitate CI/CD for the ongoing development of the API.
+Travis CI (https://travis-ci.com/github/nrvikas/Paranuara-Challenge) is used to facilitate CI/CD for the ongoing development of the API.
+
+
+## LIVE API on AWS:
+The AWS instance also has the test screenshots about **data import** and **sanitization**. It also has screen shots of **API usage** and **error scenarios**.
+
+ http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/
 
 
 ## Table of contents
@@ -34,7 +40,7 @@ Travis CI is used to facilitate CI/CD for the ongoing development of the API.
 | /api/v1/companies/{index}/employees| API to return all the employees of a company |
 |/api/v1/people/{index}  | API to return the person with the requested index |
 |/api/v1/people/{index}/liked_food  | API to return the favourite fruit and vegetable of a person |
-|/api/v1/people/special_friends?person_1={index_1}&person_2={index_2|Given 2 people, the API provides their information (Name, Age, Address, phone) and the list of their friends in common which have brown eyes and are still alive.|
+|/api/v1/people/special_friends?person_1={index_1}&person_2={index_2}|Given 2 people, the API provides their information (Name, Age, Address, phone) and the list of their friends in common which have brown eyes and are still alive.|
 |  |  |
 
 
@@ -54,7 +60,7 @@ From the project directory, execute:
 After starting up the API with the above command, open your browser and open the address location:
 ```http://localhost:5000/```
 
-Alternatively please see the ```static``` folder for the screenshots of 
+Alternatively please see the ```static``` folder for the screenshots of:
 
 - Data Import
 - Schema Validations
@@ -89,7 +95,7 @@ In order to have this application evolve, ```fruits``` and ```vegetables``` were
 The data imports of ```people```  collections automatically creates ```['fruits']``` and ```['vegetables']``` lists in the ```people``` document deriving it from ```favouriteFood```. This way we don't need to do DB look-ups while fetching data for API responses.
 Because of this, the order of importing data is important. ```fruits``` and ```vegetables``` must be imported before we import ```people```
 
-Following validations are covered during data import and there are test cases to verify these:
+Following **validations and sanitization** procedures are covered during data import and there are test cases to verify these:
 
  - Valid and allowed collection name only
  - File extension to be only .json
@@ -99,13 +105,13 @@ Following validations are covered during data import and there are test cases to
 
 Format of the command to import data is 'collection_name' followed by 'absolute_file_path'
 
--	Import ```fruits``` and ```vegetables```
-		-	```python manage.py fruits <absolute_path_to_the_folder>/fruits.json```
-		-	```python manage.py vegetables <absolute_path_to_the_folder>/vegetables.json```
--	Import ```people```
-		-	```python manage.py people <absolute_path_to_the_folder>/people.json```
--	Import ```companies```
-		-	```python manage.py companies <absolute_path_to_the_folder>/companies.json```
+-  Import ```fruits``` and ```vegetables```
+      -  ```python manage.py fruits <absolute_path_to_the_folder>/fruits.json```
+      -  ```python manage.py vegetables <absolute_path_to_the_folder>/vegetables.json```
+-  Import ```people```
+      -  ```python manage.py people <absolute_path_to_the_folder>/people.json```
+-  Import ```companies```
+      -  ```python manage.py companies <absolute_path_to_the_folder>/companies.json```
 
 **Bulk import of data at once to all collections are also supported. Simple place all your .json files in one location and use the following command:**
 ```python manage.py initialze_data_from_directory <abolute_directory_path_to_all_four_json>```
@@ -120,14 +126,14 @@ Format of the command to import data is 'collection_name' followed by 'absolute_
   - During the import of 'people' resource, ```favouriteFood``` is split into ```fruits``` and ```vegetables```array in the ```people``` document.
 
 ## Database
-To enable efficient access of the ```people``` and ```companies``` documents, following MongoDB indexes are created.
-```people``` collection:
+To enable efficient access of the ```people``` and ```companies``` documents, following MongoDB **indexes** are created.
+```people``` collection indexes:
   - ```index```
   - ```company_id```
    - ```eyeColor```
    - ```has_died```
 
-```companies``` collection:
+```companies``` collection indexes:
   - ```index``` field
 
 ## Locking
@@ -152,3 +158,5 @@ Tests written cover:
  * Schema and data dependency Validation
  * API verification of all endpoints
 
+It can be found here:
+https://travis-ci.com/github/nrvikas/Paranuara-Challenge

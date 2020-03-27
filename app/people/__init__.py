@@ -39,7 +39,7 @@ schema = {
 
 def sanitize_item(items):
     """
-    Performs sanitization of input data - splits favoriteForr into [fruits] and [vegetables]
+    Performs sanitization of input data - splits favoriteFood into [fruits] and [vegetables]
     :param items: items to sanitize
     :return:
     """
@@ -54,6 +54,7 @@ def sanitize_item(items):
 
 
 def create_people_index():
+    """Create MongoDB indexes"""
     create_index('people', 'index')
     create_index('people', 'company_id')
     create_index('people', 'eyeColor')
