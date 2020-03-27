@@ -12,6 +12,7 @@ Travis CI is used to facilitate CI/CD for the ongoing development of the API.
 * [API](#api)
 * [Installation](#installation)
 * [Start API](#start-api)
+* [Test Screenshots](#test screenshots)
 * [Config](#config)
     * [System Config](#system-config)
     * [Tests Config](#test-config)
@@ -46,6 +47,21 @@ pip install -r requirements.txt
 ## Start API
 From the project directory, execute:
 ```python run.py```
+
+## Test Screenshots
+
+After starting up the API with the above command, open your browser and open the address location:
+```http://localhost:5000/```
+
+Alternatively please see the ```static``` folder for the screenshots of 
+
+- Data Import
+- Schema Validations
+- API Test
+- API Error Tests
+
+I will make an AWS instance available for this shortly.
+
 ## Config
 Below sections include the config options that can be defined in settings.py.
 
