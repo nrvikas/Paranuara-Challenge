@@ -11,6 +11,7 @@ Travis CI is used to facilitate CI/CD for the ongoing development of the API.
 ## Table of contents
 * [API](#api)
 * [Installation](#installation)
+* [Start API](#start-api)
 * [Config](#config)
     * [System Config](#system-config)
     * [Tests Config](#test-config)
@@ -42,7 +43,9 @@ In the folder of the project:
 ```
 pip install -r requirements.txt
 ```
-
+## Start API
+From the project directory, execute:
+```python run.py```
 ## Config
 Below sections include the config options that can be defined in settings.py.
 
