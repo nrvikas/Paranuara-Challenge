@@ -1,4 +1,5 @@
 # paranuara-challenge
+[![Build Status](https://travis-ci.com/nrvikas/Paranuara-Challenge.svg?branch=master)](https://travis-ci.com/nrvikas/Paranuara-Challenge.svg?branch=master)
 
 ## Overview
 This is a Flask based **HATEOAS driven RESTful** **API** to get and search data related to company and employees according to  Paranuara Challenge -   build a REST API to provide the desired information about people living in the Paranuara planet.
