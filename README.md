@@ -12,13 +12,14 @@ Travis CI is used to facilitate CI/CD for the ongoing development of the API.
 * [API](#api)
 * [Installation](#installation)
 * [Start API](#start-api)
-* [Test Screenshots](#test screenshots)
+* [Test Screenshots](#test-screenshots)
 * [Config](#config)
     * [System Config](#system-config)
     * [Tests Config](#test-config)
 * [Data Import](#data-import)
 * [Schema](#schema)
 * [Database](#database)
+* [Locking](#locking)
 * [Code base](#code-base)
 * [CI-CD and Testing](#ci-cd-and-testing)
 
@@ -128,6 +129,9 @@ To enable efficient access of the ```people``` and ```companies``` documents, fo
 
 ```companies``` collection:
   - ```index``` field
+
+## Locking
+Since we are now exposing only a READ-ONLY API without any POST facility, locking is not yet implemented.
 
 ## Code Base
 The architecture of the code base enables the API to evolve.
