@@ -72,39 +72,12 @@ def get_special_friends():
         return jsonify(get_index_value_error()), 400
 
     try:
-        # Use aggregation pipeline to get common friends
-        pipeline = [{"$match": {"index": {"$in": [person_one_index, person_two_index]}}},
-                    {"$project": {"_id": 0, "age": 1, "name": 1, "address": 1, "phone": 1, "friends": 1, "index": 1}},
-                    {"$group": {"people": {"$push": "$$ROOT"}, "_id": 0,
-                                "friends1": {"$first": "$friends.index"}, "friends2": {"$last": "$friends.index"}}},
-                    {"$project": {"commonFriends": {"$setIntersection": ["$friends1", "$friends2"]},
-                                  "_id": 0, "people": 1}}]
-        people_and_their_common_friends = list(get_items_from_collection_by_aggregation('people', pipeline))
-
-        if len(people_and_their_common_friends) == 0:
-            return jsonify(get_person_not_found_error('{} or {}'.format(person_one_index, person_two_index))), 404
-
-        people_only = [p.get('index') for p in people_and_their_common_friends[0]['people']]
-        if person_one_index not in people_only:
-            return jsonify(get_person_not_found_error(person_one_index)), 404
-        elif person_two_index not in people_only:
-            return jsonify(get_person_not_found_error(person_two_index)), 404
-
-        if not people_and_their_common_friends[0].get('commonFriends'):
-            return jsonify(get_error("Common friends not found", "Not Found", 400, "Not found",
-                                     "There are no common friends for person {} and {}".format(person_two_index,
-                                                                                               person_two_index))), 400
-
-        # Now query the DB with eye color and has_died criteria for those common friends
-        common_friends_meeting_criteria = list(get_items_from_collection_by_query("people", {
-            "index": {"$in": people_and_their_common_friends[0].get("commonFriends", [])},
-            "eyeColor": "brown",
-            "has_died": False
-        }))
+        results = list(get_items_from_collection_by_aggregation('people',
+                                                                get_aggregation_pipeline_query_special_friends(
+                                                                    person_one_index, person_two_index)))
 
         # Frame response and send - separate function
-        response = frame_response_special_friends_search(people_and_their_common_friends[0]['people'],
-                                                         common_friends_meeting_criteria)
+        response = frame_response_special_friends_search(results)
         return jsonify(response), 200
     except Exception as e:
         return jsonify(get_server_error()), 500
@@ -133,12 +106,43 @@ def enhance_hateoas(items, index=''):
         }
 
 
-def frame_response_special_friends_search(people, common_friends):
+def frame_response_special_friends_search(results):
     response = {}
-    people[0].pop('friends')
-    people[1].pop('friends')
-    response['people'] = people
-    response['common_brown_eyed_alive_friends'] = common_friends
-    enhance_hateoas(response['people'])
-    enhance_hateoas(response['common_brown_eyed_alive_friends'])
+    if results:
+        response['people'] = results[0]['people'][0]["people"]
+        response["common_brown_eyed_alive_friends"] = results[0]["special_friends"]
+        enhance_hateoas(response['people'])
+        enhance_hateoas(response["common_brown_eyed_alive_friends"])
     return response
+
+
+def get_aggregation_pipeline_query_special_friends(person_1, person_2):
+    pipeline = [
+        {"$match": {"index": {"$in": [person_1, person_2]}}},
+        {"$project": {"_id": 0, "age": 1, "name": 1, "address": 1, "phone": 1, "friends": 1, "index": 1}},
+        {"$group": {
+            "people": {"$push": "$$ROOT"}, "_id": 0,
+            "friends1": {"$first": "$friends.index"}, "friends2": {"$last": "$friends.index"}
+        }},
+        {"$project": {"commonFriends": {"$setIntersection": ["$friends1", "$friends2"]}, "_id": 0, "people": 1}},
+        {"$lookup": {
+            "from": "people",
+            "localField": "commonFriends",
+            "foreignField": "index",
+            "as": "commonFriendsObjects"
+        }},
+        {"$unwind": {"path": "$commonFriendsObjects", "preserveNullAndEmptyArrays": True}},
+        {"$match": {"commonFriendsObjects.eyeColor": "brown", "commonFriendsObjects.has_died": False}},
+        {"$project": {"commonFriendsObjects._id": 0}},
+        {"$group": {
+            "_id": "$_id",
+            "people": {"$push": "$$ROOT"},
+            "special_friends": {"$push": "$commonFriendsObjects"}
+        }},
+        {"$project": {
+            "people.people": 1,
+            "special_friends": 1
+        }}
+    ]
+
+    return pipeline

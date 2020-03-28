@@ -4,84 +4,85 @@
     <meta charset="UTF-8">
     <title>Paranuara Challenge</title>
 </head>
-<body style="margin: 0px; font-family: Open Sans,sans-serif">
+<body style="margin: 0px; font-family: Open Sans,sans-serif; display: flex;">
+    <div>
     <div style="box-sizing: border-box; background-color: #03A9F4; color: #161515;
     height: 200px;
     text-align: center;
     font-size: 40px;"><h1 style="margin: 0px; padding-top: 40px">Paranuara Challenge</h1></div>
-    <div style="font-size: 24px; font-weight: 500; line-height: 24px; padding: 70px 70px;
-        background-color: #9e9e9e; color: #ffffff">
-        <div>This is a Flask based HATEOAS driven RESTful API to get and search data related to company and employees according to Paranuara Challenge - build a REST API to provide the desired information about people living in the Paranuara planet.</div>
-        <div>Simply use a API tool like Postman.</div>
-        <div> It uses MongoDB for data storage. pytest framework is used to write test cases to enhance data import and API behavior and stability.</div>
-        <div>Travis CI is used to facilitate CI/CD for the ongoing development of the API.</div>
-        <div>Travis location: <a href="https://travis-ci.com/github/nrvikas/Paranuara-Challenge" target="_blank">https://travis-ci.com/github/nrvikas/Paranuara-Challenge</a></div>
-        <h3>Details about the implementation: <a href="https://github.com/nrvikas/Paranuara-Challenge" target="_blank">https://github.com/nrvikas/Paranuara-Challenge</a></h3>
-        <h3>Live API URL example: <a href="http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/api/v1/companies/0" target="_blank">http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/api/v1/companies/0</a></h3>
-        <div>This page is created to provide examples and guide users for using the API and importing data to the application's DB</div>
-        <h2>Data Importing Validations</h2><hr>
-        <div>Validation checking for 'fruits', 'vegetables' and 'companies' collection to be imported before 'people' being imported.</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Missing_Collection_Dependency.jpg')}}" />
+        <div style="font-size: 24px; font-weight: 500; line-height: 24px; padding: 70px 70px;
+            background-color: #9e9e9e; color: #ffffff">
+            <div>This is a Flask based HATEOAS driven RESTful API to get and search data related to company and employees according to Paranuara Challenge - build a REST API to provide the desired information about people living in the Paranuara planet.</div>
+            <div>Simply use a API tool like Postman.</div>
+            <div> It uses MongoDB for data storage. pytest framework is used to write test cases to enhance data import and API behavior and stability.</div>
+            <div>Travis CI is used to facilitate CI/CD for the ongoing development of the API.</div>
+            <div>Travis location: <a href="https://travis-ci.com/github/nrvikas/Paranuara-Challenge" target="_blank">https://travis-ci.com/github/nrvikas/Paranuara-Challenge</a></div>
+            <h3>Details about the implementation: <a href="https://github.com/nrvikas/Paranuara-Challenge" target="_blank">https://github.com/nrvikas/Paranuara-Challenge</a></h3>
+            <h3>Live API URL example: <a href="http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/api/v1/companies/0" target="_blank">http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/api/v1/companies/0</a></h3>
+            <div>This page is created to provide examples and guide users for using the API and importing data to the application's DB</div>
+            <h2>Data Importing Validations</h2><hr>
+            <div>Validation checking for 'fruits', 'vegetables' and 'companies' collection to be imported before 'people' being imported.</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Missing_Collection_Dependency.jpg')}}" />
 
-        <div>Validation checking company index to be present if a person in people collection is referencing that company.</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Missing_Referential_Dependency.jpg')}}" />
+            <div>Validation checking company index to be present if a person in people collection is referencing that company.</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Missing_Referential_Dependency.jpg')}}" />
 
-        <div>Schema validation to check for: </div>
-        <div style="margin:20px;"> - 'list' field to contain a 'list' value </div>
-        <div style="margin:20px;"> - 'boolean' field to contain a 'boolean' value </div>
-        <div style="margin:20px;"> - 'number' field to contain a 'number' value </div>
-        <div style="margin:20px;"> - 'required' field to be present in the imported document</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Schema_Validation.jpg')}}" />
+            <div>Schema validation to check for: </div>
+            <div style="margin:20px;"> - 'list' field to contain a 'list' value </div>
+            <div style="margin:20px;"> - 'boolean' field to contain a 'boolean' value </div>
+            <div style="margin:20px;"> - 'number' field to contain a 'number' value </div>
+            <div style="margin:20px;"> - 'required' field to be present in the imported document</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Schema_Validation.jpg')}}" />
 
-        <div>Sucessful import of 'fruits' and 'vegetables' collection: </div>
-        <img style="mmax-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_1.jpg')}}" />
+            <div>Sucessful import of 'fruits' and 'vegetables' collection: </div>
+            <img style="mmax-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_1.jpg')}}" />
 
-        <div>Sucessful import of 'companies' collection: </div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_2.jpg')}}" />
+            <div>Sucessful import of 'companies' collection: </div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_2.jpg')}}" />
 
-        <div>Sucessful import of 'people' collection: </div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_3.jpg')}}" />
+            <div>Sucessful import of 'people' collection: </div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Successful_Import_3.jpg')}}" />
 
-        <h3>Endpoints Testing</h3><hr>
-        <div>/api/v1/companies/{index}</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Companies_Endpoint.jpg')}}" />
+            <h3>Endpoints Testing</h3><hr>
+            <div>/api/v1/companies/{index}</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Companies_Endpoint.jpg')}}" />
 
-        <div>/api/v1/companies/{index}/employee</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Company_Employee_Endpoint.jpg')}}" />
+            <div>/api/v1/companies/{index}/employee</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Company_Employee_Endpoint.jpg')}}" />
 
-        <div>/api/v1/people/{index}</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='People_Endpoint.jpg')}}" />
+            <div>/api/v1/people/{index}</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='People_Endpoint.jpg')}}" />
 
-        <div>/api/v1/people/{index}/liked_food</div>
-        <div style="margin:20px;">API to return the favourite fruit and vegetable of a person</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='People_Liked_Food_Endpoint.png')}}" />
+            <div>/api/v1/people/{index}/liked_food</div>
+            <div style="margin:20px;">API to return the favourite fruit and vegetable of a person</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='People_Liked_Food_Endpoint.png')}}" />
 
-        <div>/api/v1/people/special_friends?person_1={index_1}&person_2={index_2}</div>
-        <div style="margin:20px;">Given 2 people, the API provides their information (Name, Age, Address, phone) and the list of their friends in common which have brown eyes and are still alive.</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Special_Friends_Endpoint.jpg')}}" />
+            <div>/api/v1/people/special_friends?person_1={index_1}&person_2={index_2}</div>
+            <div style="margin:20px;">Given 2 people, the API provides their information (Name, Age, Address, phone) and the list of their friends in common which have brown eyes and are still alive.</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Special_Friends_Endpoint.jpg')}}" />
 
-        <h3>API Error Testing</h3><hr>
-        <div>/api/v1/people/special_friends?person_1={index_1}&person_2={index_2}</div>
-        <div style="margin: 20px">When people requested don't exist in the DB</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-1.jpg')}}" />
+            <h3>API Error Testing</h3><hr>
+            <div>/api/v1/people/special_friends?person_1={index_1}&person_2={index_2}</div>
+            <div style="margin: 20px">When people requested don't exist in the DB</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-1.jpg')}}" />
 
-        <div>/api/v1/companies/{index}</div>
-        <div style="margin:20px;">When a company doesn't exist in the DB.</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-2.jpg')}}" />
+            <div>/api/v1/companies/{index}</div>
+            <div style="margin:20px;">When a company doesn't exist in the DB.</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-2.jpg')}}" />
 
-        <div>/api/v1/companies/{index}</div>
-        <div style="margin:20px;">String passed as 'index'</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-3.jpg')}}" />
+            <div>/api/v1/companies/{index}</div>
+            <div style="margin:20px;">String passed as 'index'</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-3.jpg')}}" />
 
-        <div>/api/v1/people/{index}</div>
-        <div style="margin:20px;">Person doesn't exist in DB</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-4.png')}}" />
+            <div>/api/v1/people/{index}</div>
+            <div style="margin:20px;">Person doesn't exist in DB</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-4.png')}}" />
 
-        <div>/api/v1/people/{index}</div>
-        <div style="margin:20px;">String passed as 'index'</div>
-        <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-5.jpg')}}" />
+            <div>/api/v1/people/{index}</div>
+            <div style="margin:20px;">String passed as 'index'</div>
+            <img style="max-width: 1600px; margin: 40px;" src="{{url_for('static', filename='Error-5.jpg')}}" />
+            </div>
         </div>
     </div>
-
 </body>
 </html>
