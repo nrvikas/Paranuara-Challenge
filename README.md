@@ -11,8 +11,7 @@ Travis CI (https://travis-ci.com/github/nrvikas/Paranuara-Challenge) is used to 
 ## LIVE API on AWS:
 The AWS instance also has the test screenshots about **data import** and **sanitization**. It also has screen shots of **API usage** and **error scenarios**.
 
- http://ec2-13-236-182-36.ap-southeast-2.compute.amazonaws.com/
-
+ 
 
 ## Table of contents
 * [API](#api)
